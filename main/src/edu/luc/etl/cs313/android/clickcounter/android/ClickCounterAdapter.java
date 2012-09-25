@@ -54,31 +54,28 @@ public class ClickCounterAdapter {
 	 * @param r the task to be performed before updating the view
 	 * @return the created listener
 	 */
-	protected OnClickListener createUpdateViewListener(final Runnable r) {
-		return new OnClickListener() {
+	protected void createUpdateViewListener(final int id, final Runnable r) {
+		findViewById(id).setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
 				r.run();
 				updateView();
 			}
-		};
+		});
 	}
 
 	/**
 	 * Configures this adapter by creating the required listeners.
 	 */
 	public void onCreate() {
-		findViewById(R.id.button_increment).setOnClickListener(
-			createUpdateViewListener(new Runnable() {
-				public void run() { model.increment(); }
-		}));
-		findViewById(R.id.button_decrement).setOnClickListener(
-			createUpdateViewListener(new Runnable() {
-				public void run() { model.decrement(); }
-		}));
-		findViewById(R.id.button_reset).setOnClickListener(
-			createUpdateViewListener(new Runnable() {
-				public void run() { model.reset(); }
-		}));
+		createUpdateViewListener(R.id.button_increment, new Runnable() {
+			public void run() { model.increment(); }
+		});
+		createUpdateViewListener(R.id.button_decrement, new Runnable() {
+			public void run() { model.decrement(); }
+		});
+		createUpdateViewListener(R.id.button_reset, new Runnable() {
+			public void run() { model.reset(); }
+		});
 	}
 
 	/**
@@ -88,11 +85,9 @@ public class ClickCounterAdapter {
 		final TextView valueView = (TextView) findViewById(R.id.textview_value);
 		valueView.setText(Integer.toString(model.get()));
 		// afford controls according to model state
-		((Button) findViewById(R.id.button_increment)).setEnabled(!model
-				.isFull());
-		((Button) findViewById(R.id.button_decrement)).setEnabled(!model
-				.isEmpty());
+		((Button) findViewById(R.id.button_increment)).setEnabled(!model.isFull());
+		((Button) findViewById(R.id.button_decrement)).setEnabled(!model.isEmpty());
 	}
 
-	protected View findViewById(int id) { return activity.findViewById(id); }
+	protected View findViewById(final int id) { return activity.findViewById(id); }
 }
