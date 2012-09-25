@@ -1,34 +1,33 @@
-package edu.luc.etl.cs313.android.clickcounter.ui;
+package edu.luc.etl.cs313.android.clickcounter.android;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 import android.widget.Button;
 import android.widget.TextView;
-
 import edu.luc.etl.cs313.android.clickcounter.R;
 
 /**
  * GUI-level test of several essential click-counter scenarios.
- * 
+ *
  * @author laufer
  * @see http://developer.android.com/tools/testing/activity_testing.html
  */
-public class ClickCounterControllerTest extends ActivityInstrumentationTestCase2<ClickCounterController> {
+public class ClickCounterActivityTest extends ActivityInstrumentationTestCase2<ClickCounterActivity> {
 
     /**
      * Creates an {@link ActivityInstrumentationTestCase2} for the {@link SkeletonActivity}
      * activity.
      */
-	public ClickCounterControllerTest() {
-		super(ClickCounterController.class);
+	public ClickCounterActivityTest() {
+		super(ClickCounterActivity.class);
 	}
-	
+
     /**
      * Verifies that the activity under test can be launched.
      */
     public void testActivityTestCaseSetUpProperly() {
         assertNotNull("activity should be launched successfully", getActivity());
-    }	
+    }
 
     @UiThreadTest
     public void testActivityScenarioIncReset() {
@@ -47,7 +46,7 @@ public class ClickCounterControllerTest extends ActivityInstrumentationTestCase2
     	assertFalse(getDecButton().isEnabled());
     	assertTrue(getResetButton().isEnabled());
     }
-    
+
     @UiThreadTest
     public void testActivityScenarioIncUntilFull() {
     	assertEquals(0, getDisplayedValue());
@@ -63,18 +62,18 @@ public class ClickCounterControllerTest extends ActivityInstrumentationTestCase2
     	assertTrue(getDecButton().isEnabled());
     	assertTrue(getResetButton().isEnabled());
     }
-   
+
     // auxiliary methods for easy access to UI widgets
-    
+
     protected int getDisplayedValue() {
     	final TextView t = (TextView) getActivity().findViewById(R.id.textview_value);
     	return Integer.parseInt(t.getText().toString().trim());
     }
-    
+
     protected Button getIncButton() {
     	return (Button) getActivity().findViewById(R.id.button_increment);
     }
-    
+
     protected Button getDecButton() {
     	return (Button) getActivity().findViewById(R.id.button_decrement);
     }

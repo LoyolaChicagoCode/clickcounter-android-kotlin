@@ -1,8 +1,9 @@
 # Learning Objectives
 
+* An understanding of simple dependency injection
 * An understanding of event-driven program execution
 * An understanding of state dependence in applications
-* Mapping the model-view-controller architecture to Android (and the command-line)
+* Mapping the model-view-adapter architecture to Android (and the command-line)
 
 # Running the Example
 
