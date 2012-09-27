@@ -16,18 +16,21 @@
     android:id="@+id/button_increment"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:onClick="onIncrement"
     android:text="@string/label_increment" />
 
 <Button
     android:id="@+id/button_decrement"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:onClick="onDecrement"
     android:text="@string/label_decrement" />
 
 <Button
     android:id="@+id/button_reset"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:onClick="onReset"
     android:text="@string/label_reset" />
 
 </LinearLayout>

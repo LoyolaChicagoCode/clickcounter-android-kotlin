@@ -12,14 +12,14 @@ import edu.luc.etl.cs313.android.clickcounter.R;
  * @author laufer
  * @see http://developer.android.com/tools/testing/activity_testing.html
  */
-public class ClickCounterActivityTest extends ActivityInstrumentationTestCase2<ClickCounterActivity> {
+public class ClickCounterActivityTest extends ActivityInstrumentationTestCase2<ClickCounterAdapter> {
 
     /**
      * Creates an {@link ActivityInstrumentationTestCase2} for the {@link SkeletonActivity}
      * activity.
      */
 	public ClickCounterActivityTest() {
-		super(ClickCounterActivity.class);
+		super(ClickCounterAdapter.class);
 	}
 
     /**
