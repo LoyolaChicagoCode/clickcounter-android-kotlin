@@ -12,13 +12,15 @@
 
 # Setting up the Environment
 
-* Set up Android 4.2 as an Eclipse user library `Android 4.2`
-* Download [Robolectric 2.0-alpha](https://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.robolectric&a=robolectric&v=2.0-alpha-1&e=jar&c=jar-with-dependencies "download jar") (jar with all dependencies) and set it up as an Eclipse user library `Robolectric 2.0`
 * Create the file main/local.properties with the line
 
 	`sdk.dir=<root folder of your Android SDK installation>`
 	
   (alternatively, set the environment variable ANDROID_HOME in the same folder and restart Eclipse)
+* Set up Android 4.2 as an Eclipse user library `Android 4.2` with the external jars
+    * `sdk.dir/platforms/android-17/android.jar`
+    * `sdk.dir/add-ons/addon-google_apis-google-17/libs/maps.jar`
+* Download [Robolectric 2.0-alpha](https://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.robolectric&a=robolectric&v=2.0-alpha-1&e=jar&c=jar-with-dependencies "download jar") (jar with all dependencies) and set it up as an Eclipse user library `Robolectric 2.0`
 
 # Running the Application
 
