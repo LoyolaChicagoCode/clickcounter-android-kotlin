@@ -16,7 +16,7 @@
 * Download [Robolectric 2.0-alpha](https://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.robolectric&a=robolectric&v=2.0-alpha-1&e=jar&c=jar-with-dependencies "download jar") (jar with all dependencies) and set it up as an Eclipse user library `Robolectric 2.0`
 * Create the file main/local.properties with the line
 
-	sdk.dir=&lt;root folder of your Android SDK installation&gt;
+	`sdk.dir=&lt;root folder of your Android SDK installation&gt;`
 	
   (alternatively, set the environment variable ANDROID_HOME in the same folder and restart Eclipse)
 
