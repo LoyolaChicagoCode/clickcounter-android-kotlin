@@ -12,9 +12,7 @@
 bin/
 gen/
 reports/
-
-# Local configuration file (sdk path, etc)
-local.properties
+tmp/
 
 # Emacs files
 *~
