@@ -13,10 +13,10 @@
 # Setting up the Environment
 
 * Set up Android 4.2 as an Eclipse user library `Android 4.2`
-* Download Robolectric 2.0-alpha (jar with all dependencies) and set it up as an Eclipse user library `Robolectric 2.0`
+* Download [Robolectric 2.0-alpha](https://oss.sonatype.org/service/local/artifact/maven/redirect?r=releases&g=org.robolectric&a=robolectric&v=2.0-alpha-1&e=jar&c=jar-with-dependencies "download jar") (jar with all dependencies) and set it up as an Eclipse user library `Robolectric 2.0`
 * Create the file main/local.properties with the line
 
-	sdk.dir=<root folder of your Android SDK installation>
+	sdk.dir=&lt;root folder of your Android SDK installation&gt;
 	
   (alternatively, set the environment variable ANDROID_HOME in the same folder and restart Eclipse)
 
@@ -25,8 +25,8 @@
 * Android: as usual through Eclipse
 * CLI:
 	1. open a terminal
-	1. cd to the project root, e.g., ~/workspace/clickcounter-android-java
-	1. java -cp bin/classes edu.luc.etl.cs313.android.clickcounter.cli.Main
+	1. cd to the project root, e.g., `~/workspace/clickcounter-android-java`
+	1. `java -cp bin/classes edu.luc.etl.cs313.android.clickcounter.cli.Main`
 
 # Running the Tests
 
