@@ -27,6 +27,7 @@ public class ClickCounterActivityRobolectric extends ClickCounterActivityTest {
 		Log.d(TAG, "setting up test...");
 	}
 
+	@Override
 	protected ClickCounterAdapter getActivity() {
 		return activity;
 	}
