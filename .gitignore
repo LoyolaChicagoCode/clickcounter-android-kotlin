@@ -15,7 +15,9 @@ reports/
 tmp/
 
 # Local configuration file (sdk path, etc)
+build.xml
 local.properties
+proguard-project.txt
 .settings/
 
 # Emacs files
