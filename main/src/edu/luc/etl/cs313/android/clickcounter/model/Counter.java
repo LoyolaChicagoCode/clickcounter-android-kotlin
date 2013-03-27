@@ -1,11 +1,13 @@
 package edu.luc.etl.cs313.android.clickcounter.model;
 
+import java.io.Serializable;
+
 /**
  * A counter abstraction.
  *
  * @author laufer
  */
-public interface Counter {
+public interface Counter extends Serializable {
 
 	/**
 	 * Increments the counter value. Precondition: counter is not full.

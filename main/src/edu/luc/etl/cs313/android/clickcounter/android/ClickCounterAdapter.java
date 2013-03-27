@@ -38,7 +38,7 @@ public class ClickCounterAdapter extends Activity {
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG, "onCreate");
 		// inject the (implicit) dependency on the view
@@ -51,6 +51,19 @@ public class ClickCounterAdapter extends Activity {
 	protected void onStart() {
 		super.onStart();
 		Log.i(TAG, "onStart");
+		updateView();
+	}
+
+	final private static String MODEL_KEY = "theModel";
+
+	@Override
+	public void onSaveInstanceState(final Bundle savedInstanceState) {
+		savedInstanceState.putSerializable(MODEL_KEY, model);
+	}
+
+	@Override
+	public void onRestoreInstanceState(final Bundle savedInstanceState) {
+		model = (Counter) savedInstanceState.getSerializable(MODEL_KEY);
 		updateView();
 	}
 
