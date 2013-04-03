@@ -8,5 +8,8 @@
     <string name="label_increment">+</string>
     <string name="label_reset">0</string>
     <string name="label_decrement">-</string>
-    
+
+    <string name="model_key">edu.luc.etl.cs313.android.clickcounter.MODEL_KEY</string>
+    <string name="value_key">edu.luc.etl.cs313.android.clickcounter.VALUE_KEY</string>
+
 </resources>

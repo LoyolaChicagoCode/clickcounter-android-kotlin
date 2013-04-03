@@ -1,6 +1,14 @@
 package edu.luc.etl.cs313.android.clickcounter.android;
 
+import java.io.IOException;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -45,6 +53,10 @@ public class ClickCounterAdapter extends Activity {
 		setContentView(R.layout.activity_click_counter);
 		// self-inject the dependency on the model
 		setModel(createModelFromClassName());
+		// attempt to read the externally saved counter value and update the model
+		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		final int value = sharedPref.getInt(getString(R.string.value_key), model.get());
+		for (int i = model.get(); i < value; i ++) { model.increment(); }
 	}
 
 	@Override
@@ -54,21 +66,41 @@ public class ClickCounterAdapter extends Activity {
 		updateView();
 	}
 
-	final private static String MODEL_KEY = "theModel";
-
+	/**
+	 * Preserves the model state for situations such device rotation.
+	 */
 	@Override
 	public void onSaveInstanceState(final Bundle savedInstanceState) {
-		savedInstanceState.putSerializable(MODEL_KEY, model);
+		Log.i(TAG, "onSaveInstanceState");
+		savedInstanceState.putSerializable(getString(R.string.model_key), model);
+		super.onSaveInstanceState(savedInstanceState);
 	}
 
+	/**
+	 * Restores the model state after situations such device rotation.
+	 */
 	@Override
 	public void onRestoreInstanceState(final Bundle savedInstanceState) {
-		model = (Counter) savedInstanceState.getSerializable(MODEL_KEY);
+		Log.i(TAG, "onRestoreInstanceState");
+		super.onRestoreInstanceState(savedInstanceState);
+		model = (Counter) savedInstanceState.getSerializable(getString(R.string.model_key));
 		updateView();
+		playDefaultNotification();
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public void onDestroy() {
+		Log.i(TAG, "onDestroy");
+		super.onDestroy();
+		// save the counter value externally
+		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		final SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putInt(getString(R.string.value_key), model.get());
+		editor.commit();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
 		Log.i(TAG, "onCreateOptionsMenu");
 		getMenuInflater().inflate(R.menu.activity_click_counter, menu);
 		return true;
@@ -143,5 +175,28 @@ public class ClickCounterAdapter extends Activity {
 		// afford controls according to model state
 		((Button) findViewById(R.id.button_increment)).setEnabled(!model.isFull());
 		((Button) findViewById(R.id.button_decrement)).setEnabled(!model.isEmpty());
+	}
+
+	/**
+	 * Plays the default notification sound.
+	 */
+	protected void playDefaultNotification() {
+		final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		final MediaPlayer mediaPlayer = new MediaPlayer();
+		final Context context = getApplicationContext();
+
+		try {
+			mediaPlayer.setDataSource(context, defaultRingtoneUri);
+		    mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+		    mediaPlayer.prepare();
+		    mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
+		        @Override public void onCompletion(MediaPlayer mp) {
+		            mp.release();
+		        }
+		    });
+		    mediaPlayer.start();
+		} catch (final IOException ex) {
+			throw new RuntimeException(ex);
+		}
 	}
 }
