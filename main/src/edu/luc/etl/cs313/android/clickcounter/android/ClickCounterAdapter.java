@@ -21,7 +21,8 @@ import edu.luc.etl.cs313.android.clickcounter.model.Counter;
 /**
  * The top-level activity of the click counter. It serves as the adapter that
  * mediates between the click counter model and view, following the
- * Model-View-Adapter architectural pattern.
+ * Model-View-Adapter architectural pattern. In addition, it manages the
+ * application's lifecycle.
  *
  * @author laufer
  */
@@ -33,8 +34,7 @@ public class ClickCounterAdapter extends Activity {
 	private static String TAG = "clickcounter-android-activity";
 
 	/**
-	 * Explicit dependency on the model. (The dependency on the view is
-	 * implicit.)
+	 * Explicit dependency on the model. (The dependency on the view is implicit.)
 	 */
 	private Counter model;
 
@@ -43,90 +43,6 @@ public class ClickCounterAdapter extends Activity {
 	 */
 	public void setModel(final Counter model) {
 		this.model = model;
-	}
-
-	@Override
-	protected void onCreate(final Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Log.i(TAG, "onCreate");
-		// inject the (implicit) dependency on the view
-		setContentView(R.layout.activity_click_counter);
-		// self-inject the dependency on the model
-		setModel(createModelFromClassName());
-		// attempt to read the externally saved counter value and update the model
-		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-		final int value = sharedPref.getInt(getString(R.string.value_key), model.get());
-		for (int i = model.get(); i < value; i ++) { model.increment(); }
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		Log.i(TAG, "onStart");
-		updateView();
-	}
-
-	/**
-	 * Preserves the model state for situations such device rotation.
-	 */
-	@Override
-	public void onSaveInstanceState(final Bundle savedInstanceState) {
-		Log.i(TAG, "onSaveInstanceState");
-		savedInstanceState.putSerializable(getString(R.string.model_key), model);
-		super.onSaveInstanceState(savedInstanceState);
-	}
-
-	/**
-	 * Restores the model state after situations such device rotation.
-	 */
-	@Override
-	public void onRestoreInstanceState(final Bundle savedInstanceState) {
-		Log.i(TAG, "onRestoreInstanceState");
-		super.onRestoreInstanceState(savedInstanceState);
-		model = (Counter) savedInstanceState.getSerializable(getString(R.string.model_key));
-		updateView();
-		playDefaultNotification();
-	}
-
-	@Override
-	public void onDestroy() {
-		Log.i(TAG, "onDestroy");
-		super.onDestroy();
-		// save the counter value externally
-		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-		final SharedPreferences.Editor editor = sharedPref.edit();
-		editor.putInt(getString(R.string.value_key), model.get());
-		editor.commit();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		Log.i(TAG, "onCreateOptionsMenu");
-		getMenuInflater().inflate(R.menu.activity_click_counter, menu);
-		return true;
-	}
-
-	/**
-	 * Creates a model instance from the class name provided as the string value
-	 * of the external model_class resource.
-	 *
-	 * @return
-	 */
-	protected Counter createModelFromClassName() {
-		// catch checked exceptions
-		try {
-			// for flexibility, instantiate model based on externally configured
-			// class name
-			final Counter model = Class
-					.forName(getResources().getString(R.string.model_class))
-					.asSubclass(Counter.class).newInstance();
-			// inject dependency on model
-			return model;
-		} catch (final Throwable ex) {
-			Log.d(TAG, "checked exception while instantiating model", ex);
-			// re-throw as unchecked exception
-			throw new RuntimeException(ex);
-		}
 	}
 
 	/**
@@ -187,16 +103,139 @@ public class ClickCounterAdapter extends Activity {
 
 		try {
 			mediaPlayer.setDataSource(context, defaultRingtoneUri);
-		    mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-		    mediaPlayer.prepare();
-		    mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-		        @Override public void onCompletion(MediaPlayer mp) {
-		            mp.release();
-		        }
-		    });
-		    mediaPlayer.start();
+			mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+			mediaPlayer.prepare();
+			mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
+				@Override public void onCompletion(MediaPlayer mp) { mp.release(); }
+			});
+			mediaPlayer.start();
 		} catch (final IOException ex) {
 			throw new RuntimeException(ex);
 		}
+	}
+
+	@Override
+	protected void onCreate(final Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Log.i(TAG, "onCreate");
+		// inject the (implicit) dependency on the view
+		setContentView(R.layout.activity_click_counter);
+		// self-inject the dependency on the model
+		if (savedInstanceState == null) {
+			Log.i(TAG, "creating new model");
+			setModel(createModelFromClassName());
+			restoreModelFromPrefs();
+		}
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Log.i(TAG, "onStart");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.i(TAG, "onResume");
+		updateView();
+		playDefaultNotification();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Log.i(TAG, "onPause");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.i(TAG, "onStop");
+		// save the counter value externally in case we get destroyed
+		// for lack of resources or back button
+		saveModelToPrefs();
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Log.i(TAG, "onRestart");
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		Log.i(TAG, "onDestroy");
+	}
+
+	/**
+	 * Preserves the model state for situations such device rotation.
+	 */
+	@Override
+	public void onSaveInstanceState(final Bundle savedInstanceState) {
+		Log.i(TAG, "onSaveInstanceState");
+		savedInstanceState.putSerializable(getString(R.string.model_key), model);
+		super.onSaveInstanceState(savedInstanceState);
+	}
+
+	/**
+	 * Restores the model state after situations such device rotation.
+	 */
+	@Override
+	public void onRestoreInstanceState(final Bundle savedInstanceState) {
+		Log.i(TAG, "onRestoreInstanceState");
+		super.onRestoreInstanceState(savedInstanceState);
+		model = (Counter) savedInstanceState.getSerializable(getString(R.string.model_key));
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		Log.i(TAG, "onCreateOptionsMenu");
+		getMenuInflater().inflate(R.menu.activity_click_counter, menu);
+		return true;
+	}
+
+	/**
+	 * Creates a model instance from the class name provided as the string value
+	 * of the external model_class resource.
+	 *
+	 * @return
+	 */
+	protected Counter createModelFromClassName() {
+		// catch checked exceptions
+		try {
+			// for flexibility, instantiate model based on externally configured
+			// class name
+			final Counter model = Class
+					.forName(getResources().getString(R.string.model_class))
+					.asSubclass(Counter.class).newInstance();
+			// inject dependency on model
+			return model;
+		} catch (final Throwable ex) {
+			Log.d(TAG, "checked exception while instantiating model", ex);
+			// re-throw as unchecked exception
+			throw new RuntimeException(ex);
+		}
+	}
+
+	/**
+	 * Attempts to read the externally saved counter value and update the model.
+	 */
+	protected void restoreModelFromPrefs() {
+		Log.i(TAG, "restoring model from shared prefs");
+		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		final int value = sharedPref.getInt(getString(R.string.value_key), model.get());
+		for (int i = model.get(); i < value; i++) { model.increment(); }
+	}
+
+	/**
+	 * Saves the counter value externally.
+	 */
+	protected void saveModelToPrefs() {
+		final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		final SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putInt(getString(R.string.value_key), model.get());
+		editor.commit();
 	}
 }
