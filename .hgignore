@@ -1,3 +1,5 @@
+syntax: glob
+
 # built application files
 *.apk
 *.ap_
@@ -10,16 +12,31 @@
 
 # generated files
 bin/
+build/
 gen/
-reports/
-tmp/
+target/
 
 # Local configuration file (sdk path, etc)
-build.xml
 local.properties
-proguard-project.txt
-.settings/
 
 # Emacs files
 *~
 \#*\#
+
+# IDEA files
+.idea/
+*.iml
+
+# Eclipse files
+.project
+.classpath
+.settings/
+
+# Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+
+# Junk
+.DS_Store
