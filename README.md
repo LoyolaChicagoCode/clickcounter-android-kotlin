@@ -1,3 +1,5 @@
+# OUTDATED - SUBJECT TO CHANGE!
+
 # Learning Objectives
 
 * Simple dependency injection
