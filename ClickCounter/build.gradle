@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "17.0.0"
+
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 16
+    }
+}
+
+dependencies {
+    // need to keep this at 4.5, see also http://stackoverflow.com/questions/17924608
+    compile 'junit:junit:4.5+'
+}
+
+sourceSets {
+    unitTest {
+        java.srcDir file('src/test/java')
+        resources.srcDir file('src/test/resources')
+    }
+}
+
+dependencies {
+    unitTestCompile files("$project.buildDir/classes/debug")
+    // need to keep this at 4.5, see also http://stackoverflow.com/questions/17924608
+    unitTestCompile 'junit:junit:4.5+'
+    unitTestCompile 'org.mockito:mockito-all:1.9.+'
+    unitTestCompile 'org.robolectric:robolectric:2.1.1'
+    unitTestCompile 'com.google.android:android:4.1.1.+'
+}
+
+configurations {
+    unitTestCompile.extendsFrom runtime
+    unitTestRuntime.extendsFrom unitTestCompile
+}
+
+task unitTest(type:Test, dependsOn: assemble) {
+    description = "run unit tests"
+    testClassesDir = project.sourceSets.unitTest.output.classesDir
+    classpath = project.sourceSets.unitTest.runtimeClasspath
+}
