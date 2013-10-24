@@ -14,10 +14,10 @@
 
 # Setting up the Environment
 
-* Check out the project using Android Studio. This creates the `local.properties` file
-  with the required line
+Check out the project using Android Studio. This creates the `local.properties` file
+with the required line
 
-	`sdk.dir=<root folder of Android Studio's Android SDK installation>`
+    sdk.dir=<root folder of Android Studio's Android SDK installation>
 
 # Running the Application
 
