@@ -36,8 +36,7 @@ sourceSets {
 
 dependencies {
     unitTestCompile files("$project.buildDir/classes/debug")
-    // need to keep this at 4.5, see also http://stackoverflow.com/questions/17924608
-    unitTestCompile 'junit:junit:4.5+'
+    unitTestCompile 'junit:junit:4.+'
     unitTestCompile 'org.mockito:mockito-all:1.9.+'
     unitTestCompile 'org.robolectric:robolectric:2.1.1'
     unitTestCompile 'com.google.android:android:4.1.1.+'
@@ -52,4 +51,5 @@ task unitTest(type:Test, dependsOn: assemble) {
     description = "run unit tests"
     testClassesDir = project.sourceSets.unitTest.output.classesDir
     classpath = project.sourceSets.unitTest.runtimeClasspath
+    workingDir file('src/main')
 }

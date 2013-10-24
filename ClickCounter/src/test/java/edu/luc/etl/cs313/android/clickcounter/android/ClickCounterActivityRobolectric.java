@@ -3,7 +3,9 @@ package edu.luc.etl.cs313.android.clickcounter.android;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import android.util.Log;
 
@@ -13,7 +15,6 @@ import android.util.Log;
  * @author laufer
  * @see http://pivotal.github.com/robolectric
  */
-@Ignore
 @RunWith(RobolectricTestRunner.class)
 public class ClickCounterActivityRobolectric extends AbstractClickCounterActivityTest {
 
@@ -23,7 +24,7 @@ public class ClickCounterActivityRobolectric extends AbstractClickCounterActivit
 
 	@Before
 	public void setUp() {
-		activity = new ClickCounterAdapter();
+		activity = Robolectric.buildActivity(ClickCounterAdapter.class).create().get();
 		activity.onCreate(null);
 		activity.onStart();
 		Log.d(TAG, "setting up test...");
