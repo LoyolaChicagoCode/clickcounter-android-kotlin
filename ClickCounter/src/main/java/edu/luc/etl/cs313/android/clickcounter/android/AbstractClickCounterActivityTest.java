@@ -17,6 +17,8 @@ import edu.luc.etl.cs313.android.clickcounter.R;
  * scenarios.
  *
  * @author laufer
+ *
+ * TODO figure out how to move this from main to test in Gradle
  */
 @Ignore
 public abstract class AbstractClickCounterActivityTest {

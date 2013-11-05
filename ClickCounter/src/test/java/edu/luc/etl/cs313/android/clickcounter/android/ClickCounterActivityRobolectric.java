@@ -1,11 +1,9 @@
 package edu.luc.etl.cs313.android.clickcounter.android;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import android.util.Log;
 
