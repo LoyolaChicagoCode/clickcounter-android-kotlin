@@ -23,8 +23,6 @@ public class ClickCounterActivityRobolectric extends AbstractClickCounterActivit
 	@Before
 	public void setUp() {
 		activity = Robolectric.buildActivity(ClickCounterAdapter.class).create().get();
-		activity.onCreate(null);
-		activity.onStart();
 		Log.d(TAG, "setting up test...");
 	}
 
