@@ -29,6 +29,10 @@ In Android Studio: `Run > Run ClickCounter`
 
     $ gradle --info unitTest
 
+You can view the resulting test reports in HTML by pointing your browser to
+
+    Clickcounter/build/reports/tests/index.html
+
 ## Android instrumentation tests (in-emulator/device system tests)
 
 In Android Studio, right-click on `ClickCounter/src/instrumentTest/java/.../ClickCounterActivityTest`,
