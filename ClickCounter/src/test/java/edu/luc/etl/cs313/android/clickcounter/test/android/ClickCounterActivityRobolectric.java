@@ -1,14 +1,15 @@
-package edu.luc.etl.cs313.android.clickcounter.android;
+package edu.luc.etl.cs313.android.clickcounter.test.android;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
-import android.util.Log;
+import edu.luc.etl.cs313.android.clickcounter.android.ClickCounterAdapter;
 
 /**
- * Concrete Robolectric test subclass.
+ * Concrete Robolectric test subclass. For the Gradle unitTest task to work,
+ * the Robolectric dependency needs to be isolated here instead of being present in src/main.
  *
  * @author laufer
  * @see http://pivotal.github.com/robolectric
@@ -23,7 +24,6 @@ public class ClickCounterActivityRobolectric extends AbstractClickCounterActivit
 	@Before
 	public void setUp() {
 		activity = Robolectric.buildActivity(ClickCounterAdapter.class).create().start().get();
-		Log.d(TAG, "setting up test...");
 	}
 
 	@Override

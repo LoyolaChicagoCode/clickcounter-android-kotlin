@@ -1,4 +1,4 @@
-package edu.luc.etl.cs313.android.clickcounter.android;
+package edu.luc.etl.cs313.android.clickcounter.test.android;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,6 +11,7 @@ import org.junit.Test;
 import android.widget.Button;
 import android.widget.TextView;
 import edu.luc.etl.cs313.android.clickcounter.R;
+import edu.luc.etl.cs313.android.clickcounter.android.ClickCounterAdapter;
 
 /**
  * Abstract GUI-level test superclass for several essential click-counter

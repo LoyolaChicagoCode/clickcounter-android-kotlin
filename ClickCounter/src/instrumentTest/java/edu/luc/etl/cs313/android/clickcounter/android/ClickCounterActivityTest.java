@@ -3,6 +3,8 @@ package edu.luc.etl.cs313.android.clickcounter.android;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 
+import edu.luc.etl.cs313.android.clickcounter.test.android.AbstractClickCounterActivityTest;
+
 /**
  * Concrete Android test subclass. Has to inherit from framework class
  * and uses delegation to concrete subclass of abstract test superclass.

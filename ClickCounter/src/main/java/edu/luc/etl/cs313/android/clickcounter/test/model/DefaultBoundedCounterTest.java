@@ -1,10 +1,12 @@
-package edu.luc.etl.cs313.android.clickcounter.model;
+package edu.luc.etl.cs313.android.clickcounter.test.model;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.luc.etl.cs313.android.clickcounter.model.DefaultBoundedCounter;
 
 /**
  * Concrete testcase subclass for the default bounded counter implementation.
