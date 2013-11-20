@@ -31,7 +31,7 @@ In Android Studio: `Run > Run ClickCounter`
 
 You can view the resulting test reports in HTML by pointing your browser to
 
-    Clickcounter/build/reports/tests/index.html
+    ClickCounter/build/reports/tests/index.html
 
 ## Android instrumentation tests (in-emulator/device system tests)
 
