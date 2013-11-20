@@ -175,8 +175,8 @@ public class ClickCounterAdapter extends Activity {
 	@Override
 	public void onSaveInstanceState(final Bundle savedInstanceState) {
 		Log.i(TAG, "onSaveInstanceState");
-		savedInstanceState.putSerializable(getString(R.string.model_key), model);
 		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putSerializable(getString(R.string.model_key), model);
 	}
 
 	/**
