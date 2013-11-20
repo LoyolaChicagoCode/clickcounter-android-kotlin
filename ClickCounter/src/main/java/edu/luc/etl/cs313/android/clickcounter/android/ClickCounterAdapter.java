@@ -1,6 +1,8 @@
 package edu.luc.etl.cs313.android.clickcounter.android;
 
 import java.io.IOException;
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -176,7 +178,7 @@ public class ClickCounterAdapter extends Activity {
 	public void onSaveInstanceState(final Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
-        savedInstanceState.putSerializable(getString(R.string.model_key), model);
+        savedInstanceState.putSerializable(getString(R.string.model_key), (Serializable) model);
 	}
 
 	/**

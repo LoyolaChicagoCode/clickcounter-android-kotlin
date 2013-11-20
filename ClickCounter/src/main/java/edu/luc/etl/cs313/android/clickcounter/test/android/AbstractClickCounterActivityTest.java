@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import android.content.pm.ActivityInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import edu.luc.etl.cs313.android.clickcounter.R;
@@ -49,6 +50,7 @@ public abstract class AbstractClickCounterActivityTest {
 		assertTrue(getIncButton().isEnabled());
 		assertFalse(getDecButton().isEnabled());
 		assertTrue(getResetButton().isEnabled());
+		assertTrue(getResetButton().performClick());
 	}
 
 	@Test
@@ -66,7 +68,23 @@ public abstract class AbstractClickCounterActivityTest {
 		assertFalse(getIncButton().isEnabled());
 		assertTrue(getDecButton().isEnabled());
 		assertTrue(getResetButton().isEnabled());
+		assertTrue(getResetButton().performClick());
 	}
+
+    @Test
+    public void testActivityScenarioRotation() {
+        assertTrue(getResetButton().performClick());
+        assertEquals(0, getDisplayedValue());
+        assertTrue(getIncButton().performClick());
+        assertTrue(getIncButton().performClick());
+        assertTrue(getIncButton().performClick());
+        assertEquals(3, getDisplayedValue());
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        assertEquals(3, getDisplayedValue());
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        assertEquals(3, getDisplayedValue());
+        assertTrue(getResetButton().performClick());
+    }
 
 	// auxiliary methods for easy access to UI widgets
 

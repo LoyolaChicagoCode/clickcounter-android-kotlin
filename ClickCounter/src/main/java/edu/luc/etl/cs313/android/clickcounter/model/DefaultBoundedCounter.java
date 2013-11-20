@@ -1,6 +1,8 @@
 package edu.luc.etl.cs313.android.clickcounter.model;
 
-public class DefaultBoundedCounter implements Counter {
+import java.io.Serializable;
+
+public class DefaultBoundedCounter implements Counter, Serializable {
 
 	/**
 	 * The lower bound of the counter.

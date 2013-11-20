@@ -47,4 +47,9 @@ public class ClickCounterActivityTest extends ActivityInstrumentationTestCase2<C
     public void testActivityScenarioIncUntilFull() {
 		actualTest.testActivityScenarioIncUntilFull();
     }
+
+    @UiThreadTest
+    public void testActivityScenarioRotation() {
+        actualTest.testActivityScenarioRotation();
+    }
 }
