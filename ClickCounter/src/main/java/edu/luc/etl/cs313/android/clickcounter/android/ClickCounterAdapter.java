@@ -174,9 +174,9 @@ public class ClickCounterAdapter extends Activity {
 	 */
 	@Override
 	public void onSaveInstanceState(final Bundle savedInstanceState) {
-		Log.i(TAG, "onSaveInstanceState");
-		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putSerializable(getString(R.string.model_key), model);
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putSerializable(getString(R.string.model_key), model);
 	}
 
 	/**
@@ -184,9 +184,9 @@ public class ClickCounterAdapter extends Activity {
 	 */
 	@Override
 	public void onRestoreInstanceState(final Bundle savedInstanceState) {
-		Log.i(TAG, "onRestoreInstanceState");
-		super.onRestoreInstanceState(savedInstanceState);
-		model = (Counter) savedInstanceState.getSerializable(getString(R.string.model_key));
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState");
+        model = (Counter) savedInstanceState.getSerializable(getString(R.string.model_key));
 	}
 
 	@Override
