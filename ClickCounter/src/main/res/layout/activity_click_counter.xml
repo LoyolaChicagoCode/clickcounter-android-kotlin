@@ -2,35 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-<TextView
-    android:id="@+id/textview_value"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_gravity="center"
-    android:layout_margin="@dimen/value_margin"
-    android:gravity="center" />
+    <TextView
+        android:id="@+id/textview_value"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/value_margin"
+        android:gravity="center" />
 
-<Button
-    android:id="@+id/button_increment"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:onClick="onIncrement"
-    android:text="@string/label_increment" />
+    <Button
+        android:id="@+id/button_increment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onIncrement"
+        android:text="@string/label_increment" />
 
-<Button
-    android:id="@+id/button_decrement"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:onClick="onDecrement"
-    android:text="@string/label_decrement" />
+    <Button
+        android:id="@+id/button_decrement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onDecrement"
+        android:text="@string/label_decrement" />
 
-<Button
-    android:id="@+id/button_reset"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:onClick="onReset"
-    android:text="@string/label_reset" />
+    <Button
+        android:id="@+id/button_reset"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onReset"
+        android:text="@string/label_reset" />
 
 </LinearLayout>

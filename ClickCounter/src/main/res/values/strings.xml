@@ -4,7 +4,7 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_click_counter">Click Counter</string>
 
-    <string name="model_class">edu.luc.etl.cs313.android.clickcounter.model.DefaultBoundedCounter</string>
+    <string name="model_class">edu.luc.etl.cs313.misc.boundedcounter.model.SimpleBoundedCounter</string>
     <string name="label_increment">+</string>
     <string name="label_reset">0</string>
     <string name="label_decrement">-</string>

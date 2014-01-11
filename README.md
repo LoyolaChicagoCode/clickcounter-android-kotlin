@@ -6,9 +6,10 @@
 * Mapping the model-view-adapter architecture to Android (and the command-line)
 * Android application life cycle management (including rotation and back button)
 * Playing a notification sound in Android
+* Adapter pattern (wrapper, as opposed to the adapter in MVA)
+* Dependency inversion principle (DIP)
 * Automated unit and integration testing with JUnit
 * Testcase Superclass pattern for xUnit testing
-* Simple dependency injection
 * Automated system testing by interacting with the GUI
 * Automated GUI testing in Android
 
@@ -36,4 +37,8 @@ You can view the resulting test reports in HTML by opening this file in your bro
 ## Android instrumentation tests (in-emulator/device system tests)
 
 In Android Studio, right-click on `ClickCounter/src/instrumentTest/java/.../ClickCounterActivityTest`,
-then choose `Run ClickCounterActivity`
+then choose `Run ClickCounterActivityTest`
+
+If this does not work, you can use Gradle:
+
+    $ gradle connectedInstrumentTest
