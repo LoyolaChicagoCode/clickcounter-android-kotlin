@@ -55,10 +55,12 @@ public class ClickCounterActivity extends Activity {
      *
      * @param view the event source
      */
+    // begin-method-onIncrement
     public void onIncrement(final View view) {
         model.increment();
         updateView();
     }
+    // end-method-onIncrement
 
     /**
      * Handles the semantic decrement event.
@@ -83,6 +85,7 @@ public class ClickCounterActivity extends Activity {
     /**
      * Updates the view from the model.
      */
+    // begin-method-updateView
     protected void updateView() {
         final TextView valueView = (TextView) findViewById(R.id.textview_value);
         valueView.setText(Integer.toString(model.get()));
@@ -90,6 +93,7 @@ public class ClickCounterActivity extends Activity {
         ((Button) findViewById(R.id.button_increment)).setEnabled(!model.isFull());
         ((Button) findViewById(R.id.button_decrement)).setEnabled(!model.isEmpty());
     }
+    // end-method-updateView
 
     /**
      * Plays the default notification sound.

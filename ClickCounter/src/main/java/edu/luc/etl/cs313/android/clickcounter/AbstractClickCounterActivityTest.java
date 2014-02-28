@@ -31,6 +31,7 @@ public abstract class AbstractClickCounterActivityTest {
         assertNotNull("activity should be launched successfully", getActivity());
     }
 
+    // begin-method-testActivityScenarioIncReset
     @Test
     public void testActivityScenarioIncReset() {
         assertTrue(getResetButton().performClick());
@@ -50,6 +51,7 @@ public abstract class AbstractClickCounterActivityTest {
         assertTrue(getResetButton().isEnabled());
         assertTrue(getResetButton().performClick());
     }
+    // end-method-testActivityScenarioIncReset
 
     @Test
     public void testActivityScenarioIncUntilFull() {

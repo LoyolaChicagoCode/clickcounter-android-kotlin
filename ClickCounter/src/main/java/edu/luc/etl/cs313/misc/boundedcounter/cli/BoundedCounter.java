@@ -3,6 +3,7 @@ package edu.luc.etl.cs313.misc.boundedcounter.cli;
 /**
  * A bounded counter abstraction.
  */
+// begin-interface-BoundedCounter
 public interface BoundedCounter {
     void increment();
     void decrement();
@@ -10,3 +11,4 @@ public interface BoundedCounter {
     boolean isFull();
     boolean isEmpty();
 }
+// end-interface-BoundedCounter

@@ -7,26 +7,16 @@ import edu.luc.etl.cs313.misc.boundedcounter.cli.BoundedCounter;
  */
 public class SimpleBoundedCounter implements BoundedCounter {
 
-    /**
-     * The lower bound of the counter.
-     *
-     * @author laufer
-     */
+    /** The lower bound of the counter. */
     private final int min;
 
-    /**
-     * The upper bound of the counter.
-     */
+    /** The upper bound of the counter. */
     private final int max;
 
-    /**
-     * The current value of the counter.
-     */
+    /** The current value of the counter. */
     private int value;
 
-    /**
-     * Constructs a bounded counter with the default bounds.
-     */
+    /** Constructs a bounded counter with the default bounds. */
     public SimpleBoundedCounter() {
         this(0, 10);
     }
