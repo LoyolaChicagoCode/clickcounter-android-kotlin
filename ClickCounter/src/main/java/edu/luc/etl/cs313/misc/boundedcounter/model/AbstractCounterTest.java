@@ -31,6 +31,7 @@ public abstract class AbstractCounterTest {
         assertFalse(counter.isEmpty() && counter.isFull());
     }
 
+    // begin-method-testIncrement
     @Test
     public void testIncrement() {
         decrementIfFull();
@@ -39,6 +40,7 @@ public abstract class AbstractCounterTest {
         counter.increment();
         assertEquals(v + 1, counter.get());
     }
+    // end-method-testIncrement
 
     @Test
     public void testDecrement() {
