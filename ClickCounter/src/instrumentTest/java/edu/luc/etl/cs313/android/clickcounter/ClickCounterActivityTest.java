@@ -36,10 +36,12 @@ public class ClickCounterActivityTest extends ActivityInstrumentationTestCase2<C
         actualTest.testActivityTestCaseSetUpProperly();
     }
 
+    // begin-method-testActivityScenarioIncReset
     @UiThreadTest
     public void testActivityScenarioIncReset() {
         actualTest.testActivityScenarioIncReset();
     }
+    // end-method-testActivityScenarioIncReset
 
     @UiThreadTest
     public void testActivityScenarioIncUntilFull() {

@@ -71,6 +71,7 @@ public abstract class AbstractClickCounterActivityTest {
         assertTrue(getResetButton().performClick());
     }
 
+    // begin-method-testActivityScenarioRotation
     @Test
     public void testActivityScenarioRotation() {
         assertTrue(getResetButton().performClick());
@@ -85,6 +86,7 @@ public abstract class AbstractClickCounterActivityTest {
         assertEquals(3, getDisplayedValue());
         assertTrue(getResetButton().performClick());
     }
+    // end-method-testActivityScenarioRotation
 
     // auxiliary methods for easy access to UI widgets
 
