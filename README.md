@@ -39,6 +39,6 @@ You can view the resulting test reports in HTML by opening this file in your bro
 In Android Studio, right-click on `ClickCounter/src/instrumentTest/java/.../ClickCounterActivityTest`,
 then choose `Run ClickCounterActivityTest`
 
-If this does not work, you can use Gradle:
+You can also use Gradle:
 
-    $ gradle connectedInstrumentTest
+    $ gradle connectedAndroidTest
