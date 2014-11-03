@@ -6,7 +6,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:0.12.+' // latest android gradle build tools
     }
 }
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 repositories {
     mavenCentral()
@@ -38,7 +38,7 @@ dependencies {
     unitTestCompile files("$project.buildDir/intermediates/classes/debug")
     // location of debug classes changed with android gradle build tools 0.11.+
     unitTestCompile 'junit:junit:4.+'
-    unitTestCompile 'org.robolectric:robolectric:2.1.1'
+    unitTestCompile 'org.robolectric:robolectric:2.+'
     unitTestCompile 'com.google.android:android:4.1.1.+'
 }
 
