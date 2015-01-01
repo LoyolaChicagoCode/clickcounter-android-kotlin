@@ -1,5 +1,3 @@
-syntax: glob
-
 # built application files
 *.apk
 *.ap_
