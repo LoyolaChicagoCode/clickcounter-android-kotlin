@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import edu.luc.etl.cs313.android.clickcounter.ClickCounterActivity;
 
@@ -15,6 +16,7 @@ import edu.luc.etl.cs313.android.clickcounter.ClickCounterActivity;
  * @see http://pivotal.github.com/robolectric
  */
 @RunWith(RobolectricTestRunner.class)
+@Config(manifest = "src/main/AndroidManifest.xml")
 public class ClickCounterActivityRobolectric extends AbstractClickCounterActivityTest {
 
     private static String TAG = "clickcounter-android-activity-robolectric";

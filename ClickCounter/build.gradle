@@ -1,15 +1,17 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.+' // latest android gradle build tools
+        classpath 'com.android.tools.build:gradle:1.1.3' // latest Android gradle build tools
+        classpath 'org.robolectric:robolectric-gradle-plugin:1.0.1'
     }
 }
+
 apply plugin: 'com.android.application'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 android {
@@ -20,36 +22,15 @@ android {
         minSdkVersion 8
         targetSdkVersion 16
     }
-}
 
-dependencies {
-    // need to keep this at 4.5, see also http://stackoverflow.com/questions/17924608
-    compile 'junit:junit:4.5+'
-}
-
-sourceSets {
-    unitTest {
-        java.srcDir file('src/test/java')
-        resources.srcDir file('src/test/resources')
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 }
 
 dependencies {
-    unitTestCompile files("$project.buildDir/intermediates/classes/debug")
-    // location of debug classes changed with android gradle build tools 0.11.+
-    unitTestCompile 'junit:junit:4.+'
-    unitTestCompile 'org.robolectric:robolectric:2.+'
-    unitTestCompile 'com.google.android:android:4.1.1.+'
-}
-
-configurations {
-    unitTestCompile.extendsFrom runtime
-    unitTestRuntime.extendsFrom unitTestCompile
-}
-
-task unitTest(type:Test, dependsOn: assemble) {
-    description = "run unit tests"
-    testClassesDir = project.sourceSets.unitTest.output.classesDir
-    classpath = project.sourceSets.unitTest.runtimeClasspath
-    workingDir file('src/main')
+    // this is needed to share testcase superclasses between test and androidTest
+    compile 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:2.4'
+    testCompile 'org.apache.maven:maven-ant-tasks:2.1.3'
 }
