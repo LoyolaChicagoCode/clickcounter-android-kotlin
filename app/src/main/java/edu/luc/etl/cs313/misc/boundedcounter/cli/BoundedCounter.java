@@ -1,8 +1,6 @@
 package edu.luc.etl.cs313.misc.boundedcounter.cli;
 
-/**
- * A bounded counter abstraction.
- */
+/** A bounded counter abstraction. */
 // begin-interface-BoundedCounter
 public interface BoundedCounter {
     void increment();

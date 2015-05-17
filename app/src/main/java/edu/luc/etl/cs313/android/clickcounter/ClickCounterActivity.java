@@ -34,14 +34,10 @@ public class ClickCounterActivity extends Activity {
 
     private static String TAG = "clickcounter-android-activity";
 
-    /**
-     * Explicit dependency on the model. (The dependency on the view is implicit.)
-     */
+    /** Explicit dependency on the model. (The dependency on the view is implicit.) */
     private ClickCounterModel model;
 
-    /**
-     * Setter for the model.
-     */
+    /** Setter for the model. */
     public void setModel(final ClickCounterModel model) {
         this.model = model;
     }
@@ -175,26 +171,6 @@ public class ClickCounterActivity extends Activity {
         Log.i(TAG, "onDestroy");
     }
 
-    /**
-     * Preserves the model state for situations such device rotation.
-     */
-    @Override
-    public void onSaveInstanceState(final Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        Log.i(TAG, "onSaveInstanceState");
-        savedInstanceState.putSerializable(getString(R.string.model_key), model);
-    }
-
-    /**
-     * Restores the model state after situations such device rotation.
-     */
-    @Override
-    public void onRestoreInstanceState(final Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.i(TAG, "onRestoreInstanceState");
-        model = (ClickCounterModel) savedInstanceState.getSerializable(getString(R.string.model_key));
-    }
-
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         Log.i(TAG, "onCreateOptionsMenu");
@@ -206,7 +182,7 @@ public class ClickCounterActivity extends Activity {
      * Creates a model instance from the class name provided as the string value
      * of the external model_class resource.
      *
-     * @return
+     * @return the model instance
      */
     protected ClickCounterModel createModelFromClassName() {
         // catch checked exceptions
@@ -228,9 +204,7 @@ public class ClickCounterActivity extends Activity {
         }
     }
 
-    /**
-     * Attempts to read the externally saved counter value and update the model.
-     */
+    /** Attempts to read the externally saved counter value and update the model.  */
     protected void restoreModelFromPrefs() {
         Log.i(TAG, "restoring model from shared prefs");
         final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -240,9 +214,7 @@ public class ClickCounterActivity extends Activity {
         }
     }
 
-    /**
-     * Saves the counter value externally.
-     */
+    /** Saves the counter value externally. */
     protected void saveModelToPrefs() {
         final SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPref.edit();

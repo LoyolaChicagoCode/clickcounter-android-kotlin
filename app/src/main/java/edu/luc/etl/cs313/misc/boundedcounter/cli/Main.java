@@ -19,12 +19,16 @@ public class Main {
     public static void main(final String[] args) throws Throwable {
         int min = DEFAULT_MIN;
         int max = DEFAULT_MAX;
-        if (args.length == 2) {
-            min = Integer.parseInt(args[0]);
-            max = Integer.parseInt(args[1]);
-        } else if (args.length > 0) {
-            System.out.println("usage: Main [min max]");
-            System.exit(1);
+        switch (args.length) {
+            case 0:
+                break;
+            case 2:
+                min = Integer.parseInt(args[0]);
+                max = Integer.parseInt(args[1]);
+                break;
+            default:
+                System.out.println("usage: Main [min max]");
+                System.exit(1);
         }
         new Cli(min, max).run();
     }
