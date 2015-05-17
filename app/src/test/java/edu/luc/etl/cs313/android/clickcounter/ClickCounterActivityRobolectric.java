@@ -16,7 +16,7 @@ import edu.luc.etl.cs313.android.clickcounter.ClickCounterActivity;
  * @see http://pivotal.github.com/robolectric
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = "src/main/AndroidManifest.xml")
+@Config(manifest = "src/main/AndroidManifest.xml", emulateSdk=18)
 public class ClickCounterActivityRobolectric extends AbstractClickCounterActivityTest {
 
     private static String TAG = "clickcounter-android-activity-robolectric";
