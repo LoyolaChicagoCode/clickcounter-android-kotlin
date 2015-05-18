@@ -23,9 +23,7 @@ import static org.junit.Assert.assertTrue;
 @Ignore
 public abstract class AbstractClickCounterActivityTest {
 
-    /**
-     * Verifies that the activity under test can be launched.
-     */
+    /** Verifies that the activity under test can be launched. */
     @Test
     public void testActivityTestCaseSetUpProperly() {
         assertNotNull("activity should be launched successfully", getActivity());
