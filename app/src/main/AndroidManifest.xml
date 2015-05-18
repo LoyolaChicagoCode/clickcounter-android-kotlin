@@ -9,10 +9,10 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ClickCounterActivity"
-            android:label="@string/title_activity_click_counter" >
+            android:label="@string/title_activity_click_counter"
+            android:configChanges="orientation|screenSize|keyboardHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
