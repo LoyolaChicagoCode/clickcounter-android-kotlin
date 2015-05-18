@@ -86,8 +86,8 @@ public class ClickCounterActivity extends Activity {
         final TextView valueView = (TextView) findViewById(R.id.textview_value);
         valueView.setText(Integer.toString(model.get()));
         // afford controls according to model state
-        ((Button) findViewById(R.id.button_increment)).setEnabled(!model.isFull());
-        ((Button) findViewById(R.id.button_decrement)).setEnabled(!model.isEmpty());
+        findViewById(R.id.button_increment).setEnabled(!model.isFull());
+        findViewById(R.id.button_decrement).setEnabled(!model.isEmpty());
     }
     // end-method-updateView
     // TODO consider beeping when max is reached
@@ -104,12 +104,7 @@ public class ClickCounterActivity extends Activity {
             mediaPlayer.setDataSource(context, defaultRingtoneUri);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
             mediaPlayer.prepare();
-            mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mp.release();
-                }
-            });
+            mediaPlayer.setOnCompletionListener(MediaPlayer::release);
             mediaPlayer.start();
         } catch (final IOException ex) {
             throw new RuntimeException(ex);
@@ -195,8 +190,7 @@ public class ClickCounterActivity extends Activity {
                     .newInstance(0, 10);
             // TODO set min/max from res/values/numbers like so
 //                    .newInstance(R.integer.min_val, R.integer.max_val);
-            final ClickCounterModel wrapper = new BoundedCounterWrapper(model);
-            return wrapper;
+            return new BoundedCounterWrapper(model);
         } catch (final Throwable ex) {
             Log.d(TAG, "checked exception while instantiating model", ex);
             // re-throw as unchecked exception

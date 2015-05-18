@@ -1,5 +1,6 @@
 package edu.luc.etl.cs313.misc.boundedcounter.model;
 
+import edu.luc.etl.cs313.android.clickcounter.BuildConfig;
 import edu.luc.etl.cs313.misc.boundedcounter.cli.BoundedCounter;
 
 /**
@@ -49,16 +50,16 @@ public class SimpleBoundedCounter implements BoundedCounter {
 
     @Override
     public void increment() {
-        assert dataInvariant() && !isFull();
+        assertIfDebug(() -> dataInvariant() && !isFull());
         ++value;
-        assert dataInvariant();
+        assertIfDebug(() -> dataInvariant());
     }
 
     @Override
     public void decrement() {
-        assert dataInvariant() && !isEmpty();
+        assertIfDebug(() -> dataInvariant() && !isEmpty());
         --value;
-        assert dataInvariant();
+        assertIfDebug(() -> dataInvariant());
     }
 
     @Override
@@ -74,5 +75,15 @@ public class SimpleBoundedCounter implements BoundedCounter {
     @Override
     public boolean isEmpty() {
         return value <= min;
+    }
+
+    public interface BooleanSupplier {
+        boolean getAsBoolean();
+    }
+
+    protected void assertIfDebug(final BooleanSupplier p) {
+        if (BuildConfig.DEBUG && !p.getAsBoolean()) {
+            throw new AssertionError();
+        }
     }
 }
