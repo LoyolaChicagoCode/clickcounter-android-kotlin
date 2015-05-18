@@ -52,14 +52,14 @@ public class SimpleBoundedCounter implements BoundedCounter {
     public void increment() {
         assertIfDebug(() -> dataInvariant() && !isFull());
         ++value;
-        assertIfDebug(() -> dataInvariant());
+        assertIfDebug(this::dataInvariant);
     }
 
     @Override
     public void decrement() {
         assertIfDebug(() -> dataInvariant() && !isEmpty());
         --value;
-        assertIfDebug(() -> dataInvariant());
+        assertIfDebug(this::dataInvariant);
     }
 
     @Override
