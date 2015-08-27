@@ -28,15 +28,13 @@ In Android Studio: `Run > Run app`
 
 # Running the Tests
 
+## Unit tests including out-of-emulator system tests using Robolectric
+
 In Android Studio:
 
 * `View > Tool Windows > Build Variants`
 * `Test Artifact: Unit Tests`
 * right-click on `app/java/edu.luc.etl.cs313 (test)`, then choose `Run Tests in edu.luc.etl.cs313`
-
-## Unit tests including out-of-emulator system tests using Robolectric
-
-Click on
 
 You can also use Gradle:
 
