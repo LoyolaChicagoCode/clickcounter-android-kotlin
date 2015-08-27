@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LoyolaChicagoCode/clickcounter-android-java.svg?branch=master)](https://travis-ci.org/LoyolaChicagoCode/clickcounter-android-java)
+
 # Learning Objectives
 
 * Simple dependency injection
@@ -22,23 +24,36 @@ with the required line
 
 # Running the Application
 
-In Android Studio: `Run > Run ClickCounter`
+In Android Studio: `Run > Run app`
 
 # Running the Tests
 
+In Android Studio:
+
+* `View > Tool Windows > Build Variants`
+* `Test Artifact: Unit Tests`
+* right-click on `app/java/edu.luc.etl.cs313 (test)`, then choose `Run Tests in edu.luc.etl.cs313`
+
 ## Unit tests including out-of-emulator system tests using Robolectric
 
-    $ gradle --info unitTest
-
-You can view the resulting test reports in HTML by opening this file in your browser:
-
-    ClickCounter/build/reports/tests/index.html
-
-## Android instrumentation tests (in-emulator/device system tests)
-
-In Android Studio, right-click on `ClickCounter/src/instrumentTest/java/.../ClickCounterActivityTest`,
-then choose `Run ClickCounterActivityTest`
+Click on
 
 You can also use Gradle:
 
-    $ gradle connectedAndroidTest
+    $ ./gradlew testDebug
+
+You can view the resulting test reports in HTML by opening this file in your browser:
+
+    app/build/reports/tests/debug/index.html
+
+## Android instrumentation tests (in-emulator/device system tests)
+
+In Android Studio:
+
+* `View > Tool Windows > Build Variants`
+* `Test Artifact: Android Instrumentation Tests`
+* right-click on `app/java/edu...clickcounter (androidTest)`, then choose `Run Tests in edu...`
+
+You can also use Gradle:
+
+    $ ./gradlew connectedDebugAndroidTest
