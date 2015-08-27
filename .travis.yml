@@ -9,3 +9,4 @@ android:
     - sys-img-x86-android-17
 jdk:
   - oraclejdk8
+script: ./gradlew testDebug
