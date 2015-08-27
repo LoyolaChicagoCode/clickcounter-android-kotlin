@@ -4,5 +4,6 @@ android:
   components:
     - android-22
     - build-tools-22.0.1
+    - extra
     - sys-img-armeabi-v7a-android-19
     - sys-img-x86-android-17
