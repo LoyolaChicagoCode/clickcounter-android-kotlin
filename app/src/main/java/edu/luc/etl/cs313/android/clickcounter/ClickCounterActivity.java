@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.io.IOException;
 
 import edu.luc.etl.cs313.misc.boundedcounter.cli.BoundedCounter;
+import edu.luc.etl.cs313.misc.boundedcounter.model.SimpleBoundedCounter;
 
 /**
  * The top-level activity of the click counter. It serves as the adapter that
@@ -120,7 +121,7 @@ public class ClickCounterActivity extends Activity {
         // self-inject the dependency on the model
         if (savedInstanceState == null) {
             Log.i(TAG, "creating new model");
-            setModel(createModelFromClassName());
+            setModel(new BoundedCounterWrapper(new SimpleBoundedCounter()));
             restoreModelFromPrefs();
         }
     }

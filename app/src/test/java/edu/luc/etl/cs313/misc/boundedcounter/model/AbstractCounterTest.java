@@ -2,6 +2,8 @@ package edu.luc.etl.cs313.misc.boundedcounter.model;
 
 import org.junit.Test;
 
+import edu.luc.etl.cs313.misc.boundedcounter.cli.BoundedCounter;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -13,7 +15,7 @@ import static org.junit.Assert.assertFalse;
  */
 public abstract class AbstractCounterTest {
 
-    protected SimpleBoundedCounter counter;
+    protected BoundedCounter counter;
 
     /**
      * Setter for dependency injection. Usually invoked by concrete testcase
@@ -21,7 +23,7 @@ public abstract class AbstractCounterTest {
      *
      * @param counter
      */
-    protected void setCounter(final SimpleBoundedCounter counter) {
+    protected void setCounter(final BoundedCounter counter) {
         this.counter = counter;
     }
 
