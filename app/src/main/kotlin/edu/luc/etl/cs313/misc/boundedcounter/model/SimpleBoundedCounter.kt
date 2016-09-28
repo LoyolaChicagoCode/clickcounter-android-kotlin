@@ -6,7 +6,7 @@ import edu.luc.etl.cs313.misc.boundedcounter.cli.BoundedCounter
 /**
  * A simple bounded counter implementation.
  */
-class SimpleBoundedCounter public @JvmOverloads constructor(val min: Int = 0, val max: Int = 0) : BoundedCounter {
+class SimpleBoundedCounter @JvmOverloads constructor(val min: Int = 0, val max: Int = 10) : BoundedCounter {
 /**
  * Constructs a bounded counter with the given bounds.
 
