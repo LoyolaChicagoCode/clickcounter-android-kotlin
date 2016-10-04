@@ -2,20 +2,17 @@ package edu.luc.etl.cs313.android.clickcounter
 
 import android.app.Activity
 import android.content.Context
-import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.media.MediaPlayer.OnCompletionListener
 import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 
 import java.io.IOException
+
+import kotlinx.android.synthetic.main.activity_click_counter.*
 
 import edu.luc.etl.cs313.misc.boundedcounter.cli.BoundedCounter
 import edu.luc.etl.cs313.misc.boundedcounter.model.SimpleBoundedCounter
@@ -79,11 +76,10 @@ class ClickCounterActivity : Activity() {
      */
     // begin-method-updateView
     protected fun updateView() {
-        val valueView = findViewById(R.id.textview_value) as TextView
-        valueView.text = Integer.toString(model!!.get())
+        textview_value.text = Integer.toString(model!!.get())
         // afford controls according to model state
-        findViewById(R.id.button_increment).isEnabled = !model!!.isFull
-        findViewById(R.id.button_decrement).isEnabled = !model!!.isEmpty
+        button_increment.isEnabled = !model!!.isFull
+        button_decrement.isEnabled = !model!!.isEmpty
     }
     // end-method-updateView
     // TODO consider beeping when max is reached
